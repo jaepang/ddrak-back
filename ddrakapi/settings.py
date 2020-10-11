@@ -10,7 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-# SECRET_KEY = 'vl@g^wn6-p(wbj73k7wvjrtb00$yjz$jcn4)x-nbshhtr9of1='
 def get_env_variable(var_name):
     try:
         return os.environ[var_name]
