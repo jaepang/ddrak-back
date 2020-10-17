@@ -45,12 +45,17 @@ class EventSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'club',
-            'startDate',
-            'endDate',
+            'start',
+            'end',
+            'startTime',
+            'endTime',
+            'startRecur',
+            'endRecur',
+            'daysOfWeek',
+            'groupId',
             'allDay',
-            'rRule',
+            'color',
             'desc',
-            'creator',
-            'end_recurring_period'
+            'creator'
         )
         model = Event 
