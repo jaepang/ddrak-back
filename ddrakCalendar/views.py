@@ -10,7 +10,7 @@ class ListEvent(generics.ListCreateAPIView):
     serializer_class = EventSerializer
 
 class DetailEvent(generics.RetrieveUpdateDestroyAPIView):
-    #permission_classes = (permissions.AllowAny,)
+    permission_classes = (permissions.AllowAny,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
 
