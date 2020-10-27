@@ -3,14 +3,25 @@ from rest_framework import permissions, generics, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django_filters import rest_framework as filters
+from django.db import models as django_models
 
 from .models import Event 
 from .serializers import EventSerializer, UserSerializer, UserSerializerWithToken
+
+class MonthlyFilter(filters.FilterSet):
+    start__gte = filters.IsoDateTimeFilter(field_name="start", lookup_expr="gte")
+    start__lt = filters.IsoDateTimeFilter(field_name="start", lookup_expr="lt")
+
+    class Meta:
+        model = Event
+        fields = ["start"]
 
 class ListEvent(generics.ListCreateAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+    filter_class = MonthlyFilter
 
 class DetailEvent(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (permissions.AllowAny,)
@@ -18,7 +29,7 @@ class DetailEvent(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = EventSerializer
 
 @api_view(['GET'])
-def current_user(request):
+def CurrentUser(request):
     """
     Determine the current user by their token, and return their data
     """
