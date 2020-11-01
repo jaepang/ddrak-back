@@ -7,5 +7,6 @@ urlpatterns = [
     path('<int:pk>/', DetailEvent.as_view()),
 
     path('current-user/', CurrentUser),
-    path('users/', UserList.as_view())
+    path('users/', UserList.as_view()),
+    path('update-password/', ChangePasswordView.as_view()),
 ]

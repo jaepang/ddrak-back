@@ -5,14 +5,12 @@ from django.contrib.auth.models import User
 from .models import Event 
 
 class UserSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = User
         fields = ('username',)
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
-
     token = serializers.SerializerMethodField()
     password = serializers.CharField(write_only=True)
 
@@ -38,9 +36,15 @@ class UserSerializerWithToken(serializers.ModelSerializer):
         fields = ('token', 'username', 'password')
 
 
+class ChangePasswordSerializer(serializers.Serializer):
+    model = User
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+
 class EventSerializer(serializers.ModelSerializer):
-    
     class Meta:
+        model = Event
         fields = (
             'id',
             'title',
@@ -58,4 +62,4 @@ class EventSerializer(serializers.ModelSerializer):
             'desc',
             'creator'
         )
-        model = Event 
+         
