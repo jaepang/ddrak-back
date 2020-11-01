@@ -1,7 +1,6 @@
 from django.db import models
 from django.conf import settings as djangoSetting
 
-# Create your models here.
 class Event(models.Model):
     title = models.CharField(max_length=100)
     club = models.CharField(max_length=100)
@@ -17,7 +16,6 @@ class Event(models.Model):
     groupId = models.CharField(max_length=50, blank=True);
     # ETC
     allDay = models.BooleanField(default=False)
-    # format: #KKKKKK
     color = models.CharField(max_length=7, default='#3E80BD');
     desc = models.TextField(blank=True)
     creator = models.ForeignKey(
@@ -25,6 +23,7 @@ class Event(models.Model):
             on_delete=models.CASCADE,
             null=True,
             blank=True,
+            to_field="username",
             verbose_name="creator",
             related_name='creator')
     
