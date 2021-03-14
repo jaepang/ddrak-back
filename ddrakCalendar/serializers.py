@@ -7,7 +7,7 @@ from .models import Event
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'is_superuser', 'groups')
+        fields = ('username', 'is_superuser', 'is_staff')
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):
