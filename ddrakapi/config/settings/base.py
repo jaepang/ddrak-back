@@ -3,8 +3,8 @@ import os
 import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-ROOT_DIR = os.path.dirname(BASE_DIR)
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+ROOT_DIR = os.path.join(BASE_DIR, 'ddrakapi/')
 
 CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
 CONFIG_SECRET_COMMON = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
@@ -100,7 +100,7 @@ JWT_AUTH = {
 }
 
 CORS_ALLOWED_ORIGINS = [ 
-    'http://34.71.74.93:8000'
+    # maybe should set later
 ]
 
 
