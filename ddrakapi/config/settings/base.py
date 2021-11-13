@@ -1,26 +1,18 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 ROOT_DIR = os.path.join(BASE_DIR, 'ddrakapi/')
 load_dotenv()
 
-CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
-CONFIG_SECRET_COMMON = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
-CONFIG_SECRET_DEBUG = os.path.join(CONFIG_SECRET_DIR, 'settings_debug.json')
-CONFIG_SECRET_DEPLOY = os.path.join(CONFIG_SECRET_DIR, 'settings_deploy.json')
-
-config_secret_common = json.loads(open(CONFIG_SECRET_COMMON).read())
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = config_secret_common["django"]["secret_key"]
+SECRET_KEY = os.environ.get("SECRET_KEY")
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # Application definition
@@ -133,3 +125,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '.static_root')

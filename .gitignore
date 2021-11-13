@@ -1,5 +1,5 @@
 __pycache__/
-.config_secret/
+.static_root/
 
 .DS_Store
 db.sqlite3
