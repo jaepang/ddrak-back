@@ -15,5 +15,5 @@ COPY requirements.txt /ddrak-back/
 EXPOSE 8000
 RUN pip install -r requirements.txt
 COPY . /ddrak-back/
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+RUN python manage.py --settings=ddrakapi.config.settings.debug makemigrations
+RUN python manage.py --settings=ddrakapi.config.settings.debug migrate
