@@ -83,9 +83,7 @@ JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'ddrakapi.utils.my_jwt_response_handler'
 }
 
-CORS_ALLOWED_ORIGINS = [ 
-    # maybe should set later
-]
+CORS_ALLOWED_ORIGINS = os.environ.get("CORS_ORIGIN_WHITELIST").split(" ")
 
 
 # Password validation
