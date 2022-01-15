@@ -6,6 +6,9 @@ ARG DJANGO_SECRET_KEY
 ARG DJANGO_CORS_ORIGIN_WHITELIST
 ARG DJANGO_DB_NAME
 ARG DJANGO_DB_PASSWORD
+ARG DJANGO_DB_USER
+ARG DJANGO_DB_HOST
+ARG DJANGO_DB_PORT
 RUN echo $DJANGO_ALLOWED_HOSTS $DJANGO_SECRET_KEY $DJANGO_CORS_ORIGIN_WHITELIST $DJANGO_DB_NAME $DJANGO_DB_PASSWORD
 
 ENV ALLOWED_HOSTS=$DJANGO_ALLOWED_HOSTS \
@@ -24,5 +27,6 @@ COPY requirements.txt /ddrak-back/
 EXPOSE 8000
 RUN pip install -r requirements.txt
 COPY . /ddrak-back/
-RUN python manage.py makemigrations --settings=ddrakapi.config.settings.deploy
-RUN python manage.py migrate --settings=ddrakapi.config.settings.deploy
+RUN python manage.py showmigrations --settings=ddrakapi.config.settings.deploy
+# RUN python manage.py makemigrations --settings=ddrakapi.config.settings.deploy
+# RUN python manage.py migrate --settings=ddrakapi.config.settings.deploy
